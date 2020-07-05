@@ -1,0 +1,7 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "svelteSortOrder": "scripts-markup-styles",
+  "singleQuote": true,
+  "printWidth": 100
+}
