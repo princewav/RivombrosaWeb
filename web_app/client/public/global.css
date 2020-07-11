@@ -26,6 +26,7 @@ img {
   font-size: 1.1em;
   margin-right: 0.3em;
   cursor: pointer;
+  color: white;
 }
 .btn:hover {
   background: rgb(47, 169, 206);

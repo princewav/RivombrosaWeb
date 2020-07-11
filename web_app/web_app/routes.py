@@ -18,5 +18,6 @@ def home(path):
 
 @app.route("/get_tiers")
 def get_tiers():
+    tiers = comparator.get_tiers()
     print(f'Got tiers')
-    return jsonify(comparator.get_tiers())
+    return jsonify(tiers)
