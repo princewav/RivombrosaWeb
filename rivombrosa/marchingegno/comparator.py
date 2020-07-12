@@ -30,29 +30,36 @@ def get_tiers():
                         '1': {
                             'coeff': calcola_coeff_for_outcome('1', real_odds, marathon_odds),
                             'marathon': marathon_odds['1'],
+                            'pinnacle': pinnacle_odds['1'],
                             'stake': calcola_kelly_for_outcome('1', real_odds, marathon_odds),
                         },
                         'X': {
                             'coeff': calcola_coeff_for_outcome('X', real_odds, marathon_odds),
                             'marathon': marathon_odds['X'],
+                            'pinnacle': pinnacle_odds['X'],
                             'stake': calcola_kelly_for_outcome('X', real_odds, marathon_odds),
                         },
                         '2': {
                             'coeff': calcola_coeff_for_outcome('2', real_odds, marathon_odds),
                             'marathon': marathon_odds['2'],
+                            'pinnacle': pinnacle_odds['2'],
                             'stake': calcola_kelly_for_outcome('2', real_odds, marathon_odds),
                         },
                     }
                     for k in value_coeffs:
-                        value_coeffs[k]['coeff'] = round((value_coeffs[k]['coeff'] * 100), 3)
+                        value_coeffs[k]['coeff'] = round(
+                            (value_coeffs[k]['coeff'] * 100), 3)
 
                     for k in value_coeffs:
                         if value_coeffs[k]['coeff'] > 1.25:
-                            tiers[country]['tier_1'].append({'match': f'{match}', 'outcome': k, **value_coeffs[k]})
+                            tiers[country]['tier_1'].append(
+                                {'match': f'{match}', 'outcome': k, **value_coeffs[k]})
                         elif value_coeffs[k]['coeff'] > 1:
-                            tiers[country]['tier_2'].append({'match': f'{match}', 'outcome': k, **value_coeffs[k]})
+                            tiers[country]['tier_2'].append(
+                                {'match': f'{match}', 'outcome': k, **value_coeffs[k]})
                         elif value_coeffs[k]['coeff'] > 0.75:
-                            tiers[country]['tier_3'].append({'match': f'{match}', 'outcome': k, **value_coeffs[k]})
+                            tiers[country]['tier_3'].append(
+                                {'match': f'{match}', 'outcome': k, **value_coeffs[k]})
 
     return (tiers)
 

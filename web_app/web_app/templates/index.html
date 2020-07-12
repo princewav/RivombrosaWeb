@@ -10,6 +10,11 @@
   <!--	<link rel='icon' type='image/png' href='/favicon.png'>-->
   <link rel='stylesheet' href='/global.css'>
   <style>
+    .header {
+      background: #ededed;
+      text-align: center;
+    }
+
     input {
       padding: 7px;
       font-size: 1.3em;
@@ -44,12 +49,11 @@
   </div>
   <div class="container center">
     <br>
-    <h1>LOGIN</h1>
-    <br>
     {% if current_user.is_authenticated %}
     <a class="btn" href="{{ url_for('main.tiers') }}">Vai ai tiers</a>
     {% else %}
-    
+    <h1>LOGIN</h1>
+    <br>
     <form action="{{ url_for('auth.login') }}" method="POST">
       <div class="login">
         <input type="text" title="Username" placeholder="username" autofocus="" /><br>

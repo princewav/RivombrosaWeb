@@ -7,8 +7,8 @@
 }
 
 body {
-  font-size: 13px;
-  background: #122c34;
+  font-size: 14px;
+  background: white;
 }
 
 img {
@@ -33,10 +33,10 @@ img {
   text-decoration: none;
 }
 .btn:hover {
-  background: rgb(47, 169, 206);
+  background: #122869;
 }
 .btn:active {
-  background: rgb(44, 146, 177);
+  background: #051031;
 }
 .btn:focus {
   outline: 0;

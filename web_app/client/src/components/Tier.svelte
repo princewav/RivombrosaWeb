@@ -21,24 +21,24 @@
     <div class="table-head grid">
       <p>Evento</p>
       <p>Esito</p>
-      <p>Quota</p>
+      <p>Quota*</p>
       <p>Coeff.</p>
       <p>Stake</p>
     </div>
     {#each ['tier_1', 'tier_2', 'tier_3'] as tier, i}
       <div class="tier">
         {#each tierData[tier] as match}
-          <div class:grey={match.outcome == 'X'} class="row grid">
+          <div class:tie={match.outcome == 'X'} class="row grid {tier}">
             <p>{match.match}</p>
             <p>{match.outcome}</p>
-            <p>{match.marathon}</p>
+            <p>{match.marathon} ({match.pinnacle})</p>
             <p>
               <b class:alert={match.coeff > 2}>{match.coeff}</b>
             </p>
             <p>€ {match.stake}</p>
           </div>
         {:else}
-          <div class="row grid">
+          <div class="row grid {tier}">
             <p />
             <p>-</p>
             <p>-</p>
@@ -48,10 +48,17 @@
         {/each}
       </div>
     {/each}
+    
   </div>
 </div>
 
 <style type="text/scss">
+  $black: #1f1f1f;
+  $red: #a63d40;
+  $green: #90a959;
+  $blue: #6494aa;
+  $yellow: #e9b872;
+
   h2 {
     text-transform: uppercase;
     font-size: 1.5em;
@@ -59,7 +66,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: $black;
   }
   h2 {
     text-align: center;
@@ -86,11 +93,8 @@
       background: rgb(11, 124, 90);
     }
   }
-  .grey {
-    color: rgb(199, 199, 199);
-  }
   .alert {
-    color: rgb(187, 0, 0) !important;
+    color: rgb(80, 7, 7) !important;
   }
   .table {
     text-align: center;
@@ -101,11 +105,10 @@
   }
   .table-head {
     margin-bottom: 1em;
-    box-shadow: 1px 2px 3px #00000047;
     p {
+      box-shadow: 1px 2px 3px #00000023;
       margin: 2px;
-      background: #224870;
-      // border-radius: 5px;
+      background: $black;
       color: white;
       padding: 0.5em;
     }
@@ -116,9 +119,7 @@
   .row {
     color: white;
     margin-bottom: 0.3em;
-    background: #4ea6d963;
     p:first-child {
-      background: #00000010;
       grid-column: span 5;
       font-size: 1.1em;
     }
@@ -132,5 +133,24 @@
   .tier {
     margin-bottom: 1.2em;
     box-shadow: 1px 2px 3px #00000048;
+  }
+
+  .tier_1 p {
+    background: $red;
+  }
+  .tier_2 p {
+    background: $green;
+  }
+  .tier_3 p {
+    background: $blue;
+  }
+  .tier_1.tie p:not(:first-child) {
+    background: #a63d40a4;
+  }
+  .tier_2.tie p:not(:first-child) {
+    background: #90a959c2;
+  }
+  .tier_3.tie p:not(:first-child) {
+    background: #6494aaa4;
   }
 </style>
