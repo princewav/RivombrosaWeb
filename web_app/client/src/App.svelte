@@ -131,18 +131,8 @@
 <div>
   <Header />
   <div class="container">
-    <!-- {#if !showTiers}
-      <div class="login">
-        <input type="text" title="Username" bind:value={username} placeholder="username" />
-        <input type="password" title="Password" bind:value={password} placeholder="password" />
-        <button class="btn" on:click={login}>Login</button>
-      </div>
-    {/if} -->
-
     <div class="main-btn-container">
-      <!-- {#if showTiers} -->
       <button class="btn btn-light" on:click={getTiers}>UPDATE TIERS</button>
-      <!-- {/if} -->
     </div>
     {#each items(tiers) as [country, tierData]}
       {#if tierData.tier_1.length || tierData.tier_2.length || tierData.tier_3.length}
@@ -160,15 +150,5 @@
     align-items: center;
     margin-bottom: 30px;
     margin-top: 20px;
-  }
-  .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    margin-top: 20px;
-  }
-  .login input {
-    padding: 7px;
   }
 </style>

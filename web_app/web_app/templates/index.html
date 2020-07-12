@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+
+  <title>ShinnyPorkSociety</title>
+
+  <!--	<link rel='icon' type='image/png' href='/favicon.png'>-->
+  <link rel='stylesheet' href='/global.css'>
+  <style>
+    input {
+      padding: 7px;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      font-size: 1.3em;
+    }
+
+    .remember {
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: auto;
+    }
+
+    .remember input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>SHINNY PORK SOCIETY</h1>
+    <div class="links">
+      <a class="item" href="{{ url_for('auth.signup') }}">Registrati</a>
+    </div>
+  </div>
+  <div class="container center">
+    <br>
+    <h1>LOGIN</h1>
+    <br>
+    {% if current_user.is_authenticated %}
+    <button class="btn">Vai ai tiers</button>
+    {% else %}
+    <form action="/login" method="POST">
+      <div class="login">
+        <input type="text" title="Username" placeholder="username" autofocus="" /><br>
+        <input type="password" title="Password" placeholder="password" /><br>
+        <label class="remember"><input type="checkbox" title="Ricordami" /><span>Ricordami</span></label><br>
+
+        <button class="btn" on:click={login}>Conferma</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+</body>
+
+</html>
