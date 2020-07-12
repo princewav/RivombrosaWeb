@@ -91,3 +91,4 @@ teams_mapping = {
 }
 
 EXPECTED_EARNING = 10
+BUDGET = 323

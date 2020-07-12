@@ -1,9 +1,17 @@
 from pprint import pprint
 
-from rivombrosa.config import urls_per_country, countries
-from rivombrosa.marchingegno.shin import get_real_odds
+from rivombrosa.config import urls_per_country, countries, BUDGET
+from rivombrosa.marchingegno.shin import get_real_odds, calcola_kelly
 from rivombrosa.sites.marathon import get_prices as get_marathon_prices
 from rivombrosa.sites.pinnacle import get_prices as get_pinnacle_prices
+
+
+def calcola_coeff_for_outcome(outcome, real_odds, marathon_odds):
+    return 1 / real_odds[outcome] - 1 / marathon_odds[outcome]
+
+
+def calcola_kelly_for_outcome(outcome, real_odds, marathon_odds):
+    return int(round(calcola_kelly(BUDGET, marathon_odds[outcome], real_odds[outcome]))) * 2
 
 
 def get_tiers():
@@ -19,9 +27,21 @@ def get_tiers():
 
                 if marathon_odds:
                     value_coeffs = {
-                        '1': {'coeff': 1 / real_odds['1'] - 1 / marathon_odds['1'], 'marathon': marathon_odds['1'], 'stake': int(10 / (marathon_odds['1'] - 1))},
-                        'X': {'coeff': 1 / real_odds['X'] - 1 / marathon_odds['X'], 'marathon': marathon_odds['X'], 'stake': int(10 / (marathon_odds['X'] - 1))},
-                        '2': {'coeff': 1 / real_odds['2'] - 1 / marathon_odds['2'], 'marathon': marathon_odds['2'], 'stake': int(10 / (marathon_odds['2'] - 1))},
+                        '1': {
+                            'coeff': calcola_coeff_for_outcome('1', real_odds, marathon_odds),
+                            'marathon': marathon_odds['1'],
+                            'stake': calcola_kelly_for_outcome('1', real_odds, marathon_odds),
+                        },
+                        'X': {
+                            'coeff': calcola_coeff_for_outcome('X', real_odds, marathon_odds),
+                            'marathon': marathon_odds['X'],
+                            'stake': calcola_kelly_for_outcome('X', real_odds, marathon_odds),
+                        },
+                        '2': {
+                            'coeff': calcola_coeff_for_outcome('2', real_odds, marathon_odds),
+                            'marathon': marathon_odds['2'],
+                            'stake': calcola_kelly_for_outcome('2', real_odds, marathon_odds),
+                        },
                     }
                     for k in value_coeffs:
                         value_coeffs[k]['coeff'] = round((value_coeffs[k]['coeff'] * 100), 3)
@@ -34,7 +54,7 @@ def get_tiers():
                         elif value_coeffs[k]['coeff'] > 0.75:
                             tiers[country]['tier_3'].append({'match': f'{match}', 'outcome': k, **value_coeffs[k]})
 
-    return(tiers)
+    return (tiers)
 
 
 if __name__ == '__main__':
