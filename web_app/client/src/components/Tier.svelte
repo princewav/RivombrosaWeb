@@ -131,6 +131,6 @@
   }
   .tier {
     margin-bottom: 1.2em;
-    box-shadow: 1px 2px 3px #00000047;
+    box-shadow: 1px 2px 3px #00000048;
   }
 </style>
