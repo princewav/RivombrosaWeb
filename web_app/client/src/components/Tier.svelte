@@ -12,104 +12,125 @@
   $: srcFlag = `https://www.countryflags.io/${codiciPaesi[country]}/flat/64.png`;
 </script>
 
-<div class="tier">
+<div>
   <h2>
     <img src={srcFlag} alt="flag" />
     {country}
   </h2>
-  <table>
-    <tr class="table-head">
-      <th>Evento</th>
-      <th>Esito</th>
-      <th>Quota</th>
-      <th>Coefficiente</th>
-      <th>Stake</th>
-      <th>Gioca</th>
-    </tr>
+  <div class="table">
+    <div class="table-head grid">
+      <p>Evento</p>
+      <p>Esito</p>
+      <p>Quota</p>
+      <p>Coeff.</p>
+      <p>Stake</p>
+    </div>
     {#each ['tier_1', 'tier_2', 'tier_3'] as tier, i}
-      <tr class="tier-row">
-        <th colspan="6">Tier {i + 1}</th>
-      </tr>
-      {#each tierData[tier] as match}
-        <tr>
-          <td>{match.match}</td>
-          <td>{match.outcome}</td>
-          <td>{match.marathon}</td>
-          <td>{match.coeff}</td>
-          <td>
-            <b>€ {match.stake}</b>
-          </td>
-          <td>
-            <button class="btn btn-check">✓</button>
-          </td>
-        </tr>
-      {:else}
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-          <td />
-        </tr>
-      {/each}
+      <div class="tier">
+        {#each tierData[tier] as match}
+          <div class:grey={match.outcome == 'X'} class="row grid">
+            <p>{match.match}</p>
+            <p>{match.outcome}</p>
+            <p>{match.marathon}</p>
+            <p>
+              <b class:alert={match.coeff > 2}>{match.coeff}</b>
+            </p>
+            <p>€ {match.stake}</p>
+          </div>
+        {:else}
+          <div class="row grid">
+            <p />
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+          </div>
+        {/each}
+      </div>
     {/each}
-  </table>
+  </div>
 </div>
 
-<style>
+<style type="text/scss">
   h2 {
     text-transform: uppercase;
-    font-size: 2em;
+    font-size: 1.5em;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
   }
   h2 {
     text-align: center;
   }
   h2 img {
     margin-right: 10px;
-    width: 1.5em;
-    height: 1.5em;
-  }
-  table {
-    width: 100%;
-    text-align: center;
-  }
-  th,
-  td {
-    padding: 7px;
-    border: rgb(241, 241, 241) solid 1px;
-    border-radius: 5px;
-  }
-  tr:not(:first-child):not(.tier-row) {
-    transition: background ease 0.3s;
-  }
-  tr:not(:first-child):not(.tier-row):hover {
-    background: rgb(248, 248, 248);
-  }
-  .tier-row {
-    text-transform: uppercase;
-    background: rgb(236, 248, 255);
-  }
-  .table-head {
-    background: #197eb5;
-    color: white;
+    width: 1.2em;
+    height: 1.2em;
   }
   .btn-check {
     color: white;
-    background: rgb(27, 220, 119);
+    background: #44cfcab9;
     font-size: 1.4em;
-    padding: 0.1em 0.7em;
+    padding: 0;
+    background: none;
+    width: 100%;
     margin: 0;
     transition: background 0.3s ease;
+
+    &:hover {
+      background: rgb(18, 170, 92);
+    }
+    &:active {
+      background: rgb(11, 124, 90);
+    }
   }
-  .btn-check:hover {
-    background: rgb(18, 170, 92);
+  .grey {
+    color: rgb(199, 199, 199);
   }
-  .btn-check:active {
-    background: rgb(11, 124, 90);
+  .alert {
+    color: rgb(187, 0, 0) !important;
+  }
+  .table {
+    text-align: center;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .table-head {
+    margin-bottom: 1em;
+    box-shadow: 1px 2px 3px #00000047;
+    p {
+      margin: 2px;
+      background: #224870;
+      // border-radius: 5px;
+      color: white;
+      padding: 0.5em;
+    }
+    p:first-child {
+      grid-column: span 5;
+    }
+  }
+  .row {
+    color: white;
+    margin-bottom: 0.3em;
+    background: #4ea6d963;
+    p:first-child {
+      background: #00000010;
+      grid-column: span 5;
+      font-size: 1.1em;
+    }
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4em;
+    }
+  }
+  .tier {
+    margin-bottom: 1.2em;
+    box-shadow: 1px 2px 3px #00000047;
   }
 </style>

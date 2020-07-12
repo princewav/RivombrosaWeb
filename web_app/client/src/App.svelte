@@ -1,11 +1,7 @@
 <script>
-  import Header from './components/Header.svelte';
   import Tier from './components/Tier.svelte';
   import { post, items } from './utils';
   // let tiers = {};
-  let tiers = {};
-  let showTiers = false;
-
   const backupTiers = {
     russia: {
       tier_1: [],
@@ -115,10 +111,14 @@
       tier_3: []
     }
   };
+  // let tiers = {};
+  let tiers = backupTiers;
+  let showTiers = false;
+
 
   async function getTiers() {
-    tiers = await (await fetch('/get_tiers')).json();
-    // tiers = backupTiers;
+    // tiers = await (await fetch('/get_tiers')).json();
+    tiers = backupTiers;
   }
 
   let username = '';
@@ -129,7 +129,6 @@
 </script>
 
 <div>
-  <Header />
   <div class="container">
     <div class="main-btn-container">
       <button class="btn btn-light" on:click={getTiers}>UPDATE TIERS</button>

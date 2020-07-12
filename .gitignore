@@ -1,2 +1,8 @@
 # Project exclude paths
 /venv/
+.idea/
+.DS_Store
+.vscode/
+web_app/client/package-lock.json
+web_app/client/package.json
+*.pyc

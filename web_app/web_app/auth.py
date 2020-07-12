@@ -6,9 +6,11 @@ from . import db
 
 auth = Blueprint('auth', __name__)
 
+
 @auth.route('/login')
 def login():
     return render_template('login.html')
+
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -38,12 +40,14 @@ def signup_post():
         flash('Questo username è già esistente.')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(username=username, password=generate_password_hash(password, method='sha256'))
+    new_user = User(username=username, password=generate_password_hash(
+        password, method='sha256'))
 
     db.session.add(new_user)
     db.session.commit()
 
     return redirect(url_for('auth.login'))
+
 
 @auth.route('/logout')
 @login_required

@@ -6,21 +6,25 @@
   font-family: 'Work Sans', sans-serif;
 }
 
+body {
+  font-size: 13px;
+  background: #122c34;
+}
+
 img {
   user-select: none;
   -webkit-user-drag: none;
 }
 
 .container {
-  width: 60%;
+  width: 90%;
   margin: auto;
 }
 
 .btn {
-  background: rgb(99, 198, 228);
-  padding: 0.5em 1em;
+  background: #2A4494;
+  padding: 0.4em 0.6em;
   border: none;
-  border-radius: 0.4em;
   font-weight: 700;
   font-size: 1.1em;
   margin-right: 0.3em;
@@ -49,7 +53,7 @@ img {
   text-align: center;
 }
 
-.header {
+/* .header {
   padding: 10px;
   font-size: 1.2em;
   display: flex;
@@ -75,4 +79,20 @@ img {
 }
 .links .item:hover {
   transform: scale(1.1);
+} */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }
