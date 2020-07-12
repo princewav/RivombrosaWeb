@@ -41,9 +41,6 @@
 <body>
   <div class="header">
     <h1>SHINNY PORK SOCIETY</h1>
-    <div class="links">
-      <a class="item" href="{{ url_for('auth.signup') }}">Registrati</a>
-    </div>
   </div>
   <div class="container center">
     <br>
@@ -52,7 +49,8 @@
     {% if current_user.is_authenticated %}
     <button class="btn">Vai ai tiers</button>
     {% else %}
-    <form action="/login" method="POST">
+    
+    <form action="{{ url_for('auth.login') }}" method="POST">
       <div class="login">
         <input type="text" title="Username" placeholder="username" autofocus="" /><br>
         <input type="password" title="Password" placeholder="password" /><br>

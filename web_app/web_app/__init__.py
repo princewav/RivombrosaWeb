@@ -30,4 +30,5 @@ def create_app():
         from .auth import auth
         app.register_blueprint(main)
         app.register_blueprint(auth)
+        # db.create_all()
         return app
