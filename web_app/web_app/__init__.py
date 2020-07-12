@@ -1,9 +1,12 @@
 import sys
 from flask import Flask
-from web_app.web_app.config import Config
+from .config import Config
+from .routes import main
 
-app = Flask(__name__)
-app.config.from_object(Config)
 
-sys.path.append("..")
-from web_app.web_app import routes
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    with app.app_context():
+        app.register_blueprint(main)
+        return app

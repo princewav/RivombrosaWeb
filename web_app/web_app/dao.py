@@ -1,6 +1,6 @@
 from pathlib import Path
 import json
-from web_app.web_app import app
+from flask import current_app as app
 
 
 def save_match(json_string, save_slot_name):
