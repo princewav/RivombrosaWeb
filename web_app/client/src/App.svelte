@@ -1,7 +1,7 @@
 <script>
   import Tier from './components/Tier.svelte';
   import { post, items } from './utils';
-  // let tiers = {};
+  let tiers = {};
   const backupTiers = {
     russia: {
       tier_1: [],
@@ -111,14 +111,13 @@
       tier_3: []
     }
   };
-  // let tiers = {};
-  let tiers = backupTiers;
+  // let tiers = backupTiers;
   let showTiers = false;
 
 
   async function getTiers() {
-    // tiers = await (await fetch('/get_tiers')).json();
-    tiers = backupTiers;
+    tiers = await (await fetch('/get_tiers')).json();
+    // tiers = backupTiers;
   }
 
   let username = '';
