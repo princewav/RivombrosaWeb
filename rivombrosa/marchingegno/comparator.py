@@ -31,18 +31,21 @@ def get_tiers():
                             'coeff': calcola_coeff_for_outcome('1', real_odds, marathon_odds),
                             'marathon': marathon_odds['1'],
                             'pinnacle': pinnacle_odds['1'],
+                            'date': marathon_odds['date'],
                             'stake': calcola_kelly_for_outcome('1', real_odds, marathon_odds),
                         },
                         'X': {
                             'coeff': calcola_coeff_for_outcome('X', real_odds, marathon_odds),
                             'marathon': marathon_odds['X'],
                             'pinnacle': pinnacle_odds['X'],
+                            'date': marathon_odds['date'],
                             'stake': calcola_kelly_for_outcome('X', real_odds, marathon_odds),
                         },
                         '2': {
                             'coeff': calcola_coeff_for_outcome('2', real_odds, marathon_odds),
                             'marathon': marathon_odds['2'],
                             'pinnacle': pinnacle_odds['2'],
+                            'date': marathon_odds['date'],
                             'stake': calcola_kelly_for_outcome('2', real_odds, marathon_odds),
                         },
                     }

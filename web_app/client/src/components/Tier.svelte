@@ -19,7 +19,7 @@
   </h2>
   <div class="table">
     <div class="table-head grid">
-      <p>Evento</p>
+      <p>Evento (Data)</p>
       <p>Esito</p>
       <p>Quota*</p>
       <p>Coeff.</p>
@@ -29,7 +29,7 @@
       <div class="tier">
         {#each tierData[tier] as match}
           <div class:tie={match.outcome == 'X'} class="row grid {tier}">
-            <p>{match.match}</p>
+            <p>{match.match} ({match.date})</p>
             <p>{match.outcome}</p>
             <p>{match.marathon} ({match.pinnacle})</p>
             <p>
