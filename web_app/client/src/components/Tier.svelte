@@ -48,7 +48,7 @@
         {/each}
       </div>
     {/each}
-    
+
   </div>
 </div>
 
@@ -97,6 +97,8 @@
     color: rgb(80, 7, 7) !important;
   }
   .table {
+    margin: auto;
+    max-width: 600px;
     text-align: center;
   }
   .grid {
@@ -104,7 +106,7 @@
     grid-template-columns: repeat(4, 1fr);
   }
   .table-head {
-    margin-bottom: 1em;
+    margin-bottom: 0.3em;
     p {
       box-shadow: 1px 2px 3px #00000023;
       margin: 2px;
@@ -152,5 +154,36 @@
   }
   .tier_3.tie p:not(:first-child) {
     background: #6494aaa4;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .table {
+      margin: auto;
+      max-width: 90%;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .table-head {
+      p:first-child {
+        grid-column: span 2;
+      }
+    }
+    .row {
+      p:first-child {
+        grid-column: span 2;
+      }
+    }
+    .tier_1.tie p {
+      background: #a63d40a4;
+    }
+    .tier_2.tie p {
+      background: #90a959c2;
+    }
+    .tier_3.tie p {
+      background: #6494aaa4;
+    }
   }
 </style>
