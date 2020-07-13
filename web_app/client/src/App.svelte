@@ -110,13 +110,13 @@
       tier_3: []
     }
   };
-  // let tiers = {};
-  let tiers = backupTiers;
+  let tiers = {};
+  // let tiers = backupTiers;
   let showTiers = false;
 
   async function getTiers() {
-    // tiers = await (await fetch('/get_tiers')).json();
-    tiers = backupTiers;
+    tiers = await (await fetch('/get_tiers')).json();
+    // tiers = backupTiers;
   }
 
   let username = '';
