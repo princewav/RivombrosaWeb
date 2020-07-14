@@ -2,6 +2,115 @@
   import Tier from './components/Tier.svelte';
   import { post, items, isEmpty } from './utils';
   const backupTiers = {
+    portogallo: {
+      tier_1: [],
+      tier_2: [],
+      tier_3: []
+    },
+    spagna: {
+      tier_1: [],
+      tier_2: [],
+      tier_3: [
+        {
+          match: 'Valencia - Espanyol',
+          outcome: '1',
+          date: '16 Lug 21:00',
+          marathon: 1.6,
+          pinnacle: 1.546,
+          coeff: 0.781,
+          stake: 14,
+          esps: 0.25
+        },
+        {
+          match: 'Athletic Bilbao - Leganes',
+          outcome: '1',
+          date: '16 Lug 21:00',
+          marathon: 1.86,
+          pinnacle: 1.787,
+          coeff: 0.874,
+          stake: 12,
+          esps: 0.325
+        }
+      ]
+    },
+    italia: {
+      tier_1: [
+        {
+          match: 'Parma - Sampdoria',
+          outcome: '1',
+          date: '19 Lug 17:15',
+          marathon: 2.83,
+          pinnacle: 2.46,
+          coeff: 4.174,
+          stake: 42,
+          esps: 2.363
+        }
+      ],
+      tier_2: [
+        {
+          match: 'Milan - Bologna',
+          outcome: '1',
+          date: '18 Lug 21:45',
+          marathon: 1.63,
+          pinnacle: 1.565,
+          coeff: 1.128,
+          stake: 18,
+          esps: 0.368
+        },
+        {
+          match: 'Fiorentina - Torino',
+          outcome: 'X',
+          date: '19 Lug 19:30',
+          marathon: 4,
+          pinnacle: 3.71,
+          coeff: 1.009,
+          stake: 8,
+          esps: 0.807
+        }
+      ],
+      tier_3: [
+        {
+          match: 'SPAL - Inter',
+          outcome: '2',
+          date: '16 Lug 21:45',
+          marathon: 1.4,
+          pinnacle: 1.355,
+          coeff: 0.859,
+          stake: 20,
+          esps: 0.24
+        },
+        {
+          match: 'Roma - Verona',
+          outcome: '1',
+          date: '15 Lug 21:45',
+          marathon: 1.69,
+          pinnacle: 1.625,
+          coeff: 0.971,
+          stake: 16,
+          esps: 0.328
+        },
+        {
+          match: 'Lecce - Fiorentina',
+          outcome: '1',
+          date: '15 Lug 21:45',
+          marathon: 3.88,
+          pinnacle: 3.63,
+          coeff: 0.782,
+          stake: 6,
+          esps: 0.607
+        },
+        {
+          match: 'Roma - Inter',
+          outcome: 'X',
+          date: '19 Lug 21:45',
+          marathon: 3.96,
+          pinnacle: 3.68,
+          coeff: 0.845,
+          stake: 8,
+          esps: 0.67
+        }
+      ]
+    },
     russia: {
       tier_1: [],
       tier_2: [],
@@ -12,100 +121,14 @@
         {
           match: 'Crystal Palace - Man United',
           outcome: 'X',
-          coeff: 1.266,
-          marathon: 5.1,
-          stake: 2
-        }
-      ],
-      tier_2: [
-        {
-          match: 'Newcastle - Tottenham',
-          outcome: '1',
-          coeff: 1.226,
-          marathon: 5.45,
-          stake: 2
-        }
-      ],
-      tier_3: [
-        {
-          match: 'Norwich - West Ham',
-          outcome: '2',
-          coeff: 0.857,
-          marathon: 2.1,
-          stake: 9
-        },
-        {
-          match: 'Aston Villa - Crystal Palace',
-          outcome: '2',
-          coeff: 0.925,
-          marathon: 3.45,
-          stake: 4
-        },
-        {
-          match: 'Chelsea - Norwich',
-          outcome: '1',
-          coeff: 0.916,
-          marathon: 1.21,
-          stake: 47
-        },
-        {
-          match: 'Everton - Aston Villa',
-          outcome: '1',
-          coeff: 0.936,
-          marathon: 1.9,
-          stake: 11
-        },
-        {
-          match: 'West Ham - Watford',
-          outcome: 'X',
-          coeff: 0.837,
-          marathon: 3.76,
-          stake: 3
-        }
-      ]
-    },
-    italia: {
-      tier_1: [
-        {
-          match: 'Juventus - Atalanta',
-          outcome: '2',
-          coeff: 1.399,
-          marathon: 3.58,
-          stake: 3
-        }
-      ],
-      tier_2: [],
-      tier_3: [
-        {
-          match: 'SPAL - Inter',
-          outcome: 'X',
-          coeff: 0.894,
-          marathon: 5.3,
-          stake: 2
-        },
-        {
-          match: 'Cagliari - Lecce',
-          outcome: 'X',
-          coeff: 0.931,
-          marathon: 4.15,
-          stake: 3
-        },
-        {
-          match: 'Genoa - SPAL',
-          outcome: '2',
-          coeff: 0.8,
+          date: '16 Lug 21:15',
           marathon: 5.7,
-          stake: 2
+          pinnacle: 5.06,
+          coeff: 1.286,
+          stake: 10,
+          esps: 1.466
         }
-      ]
-    },
-    portogallo: {
-      tier_1: [],
-      tier_2: [],
-      tier_3: []
-    },
-    spagna: {
-      tier_1: [],
+      ],
       tier_2: [],
       tier_3: []
     }

@@ -1,4 +1,5 @@
 <script>
+  import { post } from '../utils';
   export let country;
   export let tierData;
   const codiciPaesi = {
@@ -10,6 +11,11 @@
   };
 
   $: srcFlag = `https://www.countryflags.io/${codiciPaesi[country]}/flat/64.png`;
+
+  const save = data => {
+    console.log(data);
+    post({endpoint: '/save_bet', data});
+  };
 </script>
 
 <div>
@@ -28,7 +34,7 @@
     {#each ['tier_1', 'tier_2', 'tier_3'] as tier, i}
       <div class="tier">
         {#each tierData[tier] as match}
-          <div class:tie={match.outcome == 'X'} class="row grid {tier}">
+          <div class:tie={match.outcome == 'X'} class="row grid {tier}" on:click={save(match)}>
             <p>{match.match} ({match.date})</p>
             <p>{match.outcome}</p>
             <p>{match.marathon} ({match.pinnacle})</p>
@@ -121,11 +127,18 @@
   .row {
     color: white;
     margin-bottom: 0.3em;
+    &:hover p {
+      background: #2d9243 !important;
+    }
+    &:active p {
+      background: #1f6b2f !important;
+    }
     p:first-child {
       grid-column: span 5;
       font-size: 1.1em;
     }
     p {
+      transition: background 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
