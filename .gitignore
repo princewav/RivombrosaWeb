@@ -7,3 +7,4 @@ web_app/client/package-lock.json
 web_app/client/package.json
 *.pyc
 scripts/
+web_app/wsgi.py
