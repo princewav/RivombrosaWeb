@@ -33,5 +33,12 @@ def save_bet():
     payload = request.json
     dao.save_bet(payload)
     print(f'Saving bet')
-    print(payload)
     return Response(status=201)
+
+
+@main.route("/load_bets")
+def load_bets():
+    bets = dao.load_bets()
+    print('Got bets')
+    print(bets)
+    return jsonify(bets)

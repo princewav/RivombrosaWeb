@@ -1,5 +1,5 @@
 <script>
-  import { post } from '../utils';
+  import { post } from '../../utils';
   export let country;
   export let tierData;
   const codiciPaesi = {
@@ -13,8 +13,9 @@
   $: srcFlag = `https://www.countryflags.io/${codiciPaesi[country]}/flat/64.png`;
 
   const save = data => {
-    console.log(data);
-    post({endpoint: '/save_bet', data});
+    const allow = confirm(`Vuoi giocare €${data.stake} su ${data.match}?`);
+    if (allow)
+      post({endpoint: '/save_bet', data});
   };
 </script>
 
