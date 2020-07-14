@@ -30,7 +30,7 @@ def login_post():
 
 
 @auth.route('/signup', methods=['POST'])
-def signup_post():
+def signup():
     username = request.form.get('email')
     password = request.form.get('password')
 
