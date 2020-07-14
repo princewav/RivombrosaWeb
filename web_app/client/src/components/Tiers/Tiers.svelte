@@ -154,9 +154,9 @@
     <div class="main-btn-container">
       <button class="btn btn-light" on:click={getTiers}>AGGIORNA TIERS</button>
     </div>
-    {#each items(tiers) as [country, tierData]}
+    {#each items(tiers) as [league, tierData]}
       {#if tierData.tier_1.length || tierData.tier_2.length || tierData.tier_3.length}
-        <Tier {country} {tierData} />
+        <Tier {league} {tierData} />
         <br />
       {/if}
     {/each}

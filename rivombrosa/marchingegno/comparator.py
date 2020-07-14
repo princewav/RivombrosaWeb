@@ -1,14 +1,14 @@
 from pprint import pprint
 
-from rivombrosa.config import urls_per_country, countries, BUDGET
+from rivombrosa.config import urls_per_league, leagues, BUDGET
 from rivombrosa.marchingegno.shin import get_real_odds, calcola_kelly, calcola_e
 from rivombrosa.sites.marathon import get_prices as get_marathon_prices
 from rivombrosa.sites.pinnacle import get_prices as get_pinnacle_prices
 
 
 def get_tiers():
-    tiers = {x: {'tier_1': [], 'tier_2': [], 'tier_3': []} for x in countries}
-    for country, urls in urls_per_country.items():
+    tiers = {x: {'tier_1': [], 'tier_2': [], 'tier_3': []} for x in leagues}
+    for league, urls in urls_per_league.items():
         pinnacle_data = get_pinnacle_prices(urls['pinnacle'])
         marathon_data = get_marathon_prices(urls['marathon'])
 
@@ -21,7 +21,7 @@ def get_tiers():
                     data = {
                         outcome: {
                             'match': match,
-                            'league': country,
+                            'league': league,
                             'outcome': outcome,
                             'date': marathon_odds['date'],
                             'marathon': marathon_odds[outcome],
@@ -35,7 +35,7 @@ def get_tiers():
                     for k in data:
                         for i, r in enumerate((1.25, 1, 0.75)):
                             if data[k]['coeff'] > r:
-                                tiers[country][f'tier_{i+1}'].append(
+                                tiers[league][f'tier_{i+1}'].append(
                                     {'tier': f'tier_{i}', **data[k]}
                                 )
                                 break

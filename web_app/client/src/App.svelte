@@ -16,12 +16,12 @@
           }}>
           Tiers
         </li>
-        <li
+        <!-- <li
           on:click={() => {
             activePage = 'history';
           }}>
           Storico
-        </li>
+        </li> -->
       </ul>
     </div>
   </header>
@@ -30,7 +30,7 @@
     {#if activePage == 'tiers'}
       <Tiers />
     {:else if activePage == 'history'}
-      <History />
+      <!-- <History /> -->
     {/if}
   </div>
 </div>

@@ -1,28 +1,27 @@
 <script>
   import { post } from '../../utils';
-  export let country;
+  export let league;
   export let tierData;
   const codiciPaesi = {
-    inghilterra: 'gb',
-    italia: 'it',
-    spagna: 'es',
-    portogallo: 'pt',
-    russia: 'ru'
+    'Premier League': 'gb',
+    'Serie A': 'it',
+    'Primera Division': 'es',
+    'Primeira Liga': 'pt',
+    "Prem'er-Lig": 'ru'
   };
 
-  $: srcFlag = `https://www.countryflags.io/${codiciPaesi[country]}/flat/64.png`;
+  $: srcFlag = `https://www.countryflags.io/${codiciPaesi[league]}/flat/64.png`;
 
   const save = data => {
     const allow = confirm(`Vuoi giocare €${data.stake} su ${data.match}?`);
-    if (allow)
-      post({endpoint: '/save_bet', data});
+    if (allow) post({ endpoint: '/save_bet', data });
   };
 </script>
 
 <div>
   <h2>
     <img src={srcFlag} alt="flag" />
-    {country}
+    {league}
   </h2>
   <div class="table">
     <div class="table-head grid">
@@ -30,6 +29,7 @@
       <p>Esito</p>
       <p>Quota*</p>
       <p>Coeff.</p>
+      <p>ESPS</p>
       <p>Stake</p>
     </div>
     {#each ['tier_1', 'tier_2', 'tier_3'] as tier, i}
@@ -42,11 +42,13 @@
             <p>
               <b class:alert={match.coeff > 2}>{match.coeff}</b>
             </p>
+            <p>{match.esps}</p>
             <p>€ {match.stake}</p>
           </div>
         {:else}
           <div class="row grid {tier}">
             <p />
+            <p>-</p>
             <p>-</p>
             <p>-</p>
             <p>-</p>
@@ -110,7 +112,7 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
   .table-head {
     margin-bottom: 0.3em;
@@ -178,7 +180,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(7, 1fr);
     }
     .table-head {
       p:first-child {

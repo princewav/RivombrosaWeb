@@ -15,25 +15,32 @@ headers = {
     'accept-language': 'it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,nl;q=0.6',
 }
 
-urls_per_country = {
-    'inghilterra': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/1980/matchups',
-                    'marathon': 'https://www.marathonbet.it/it/betting/Football/England/Premier+League+-+21520'},
-    'spagna': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2196/matchups',
-               'marathon': 'https://www.marathonbet.it/it/betting/Football/Spain/Primera+Division+-+8736'},
-    # 'russia': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2406/matchups',
+urls_per_league = {
+    'Premier League': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/1980/matchups',
+                       'marathon': 'https://www.marathonbet.it/it/betting/Football/England/Premier+League+-+21520'},
+    'Primera Division': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2196/matchups',
+                         'marathon': 'https://www.marathonbet.it/it/betting/Football/Spain/Primera+Division+-+8736'},
+    # 'Prem'er-Liga': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2406/matchups',
     #            'marathon': 'https://www.marathonbet.it/it/betting/Football/Russia/Premier+League+-+22433'},
-    'italia': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2436/matchups',
-               'marathon': 'https://www.marathonbet.it/it/popular/Football/Italy/Serie+A+-+22434'},
-    'portogallo': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2386/matchups',
-                   'marathon': 'https://www.marathonbet.it/it/popular/Football/Portugal+-+21518'},
+    'Serie A': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2436/matchups',
+                'marathon': 'https://www.marathonbet.it/it/popular/Football/Italy/Serie+A+-+22434'},
+    'Primeira Liga': {'pinnacle': 'https://guest.api.arcadia.pinnacle.com/0.1/leagues/2386/matchups',
+                      'marathon': 'https://www.marathonbet.it/it/popular/Football/Portugal+-+21518'},
 }
 
-countries = {
-    'inghilterra',
-    'spagna',
-    'russia',
-    'italia',
-    'portogallo',
+leagues = {
+    'Premier League',
+    'Primera Division',
+    "Prem'er-Liga",
+    'Serie A',
+    'Primeira Liga',
+}
+flags = {
+    'Serie A': '🇮🇹',
+    'Premier League': '🇬🇧',
+    'Primera Division': '🇪🇸',
+    "Primeira Liga": '🇵🇹',
+    "Prem'er-Liga": '🇷🇺',
 }
 
 teams_mapping = {
@@ -60,8 +67,7 @@ teams_mapping = {
         'Rio Ave FC': 'Rio Ave', 'Santa Clara': 'Santa Clara', 'CS Maritimo': 'Maritimo', 'Portimonense': 'Portimonense', 'Guimaraes': 'Guimaraes', 'Benfica': 'Benfica',
         'Tondela': 'Tondela', 'Aves': 'Aves', 'Braga': 'Braga'
 
-    }
-    ,
+    },
     'marathon': {
         # ita
         'Torino': 'Torino', 'Lazio': 'Lazio', 'Genoa': 'Genoa', 'Juventus': 'Juventus', 'Bologna': 'Bologna', 'Cagliari': 'Cagliari', 'Inter': 'Inter',
