@@ -56,8 +56,8 @@
     <br>
     <form action="{{ url_for('auth.login') }}" method="POST">
       <div class="login">
-        <input type="text" title="Username" placeholder="username" autofocus="" /><br>
-        <input type="password" title="Password" placeholder="password" /><br>
+        <input type="text" title="Username" placeholder="username" autofocus="" name="username" /><br>
+        <input type="password" title="Password" placeholder="password" name="password" /><br>
         <label class="remember"><input type="checkbox" title="Ricordami" /><span>Ricordami</span></label><br>
 
         <button class="btn" type="submit">Conferma</button>
