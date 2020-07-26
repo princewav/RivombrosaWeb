@@ -16,7 +16,7 @@ class Bet(db.Model):
     coeff = db.Column(db.Float())
     tier = db.Column(db.Integer())
     stake = db.Column(db.Integer())
-    odd = db.Column(db.Float())
+    odds = db.Column(db.Float())
     esps = db.Column(db.Float())
     success = db.Column(db.Boolean())
 

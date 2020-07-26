@@ -16,7 +16,7 @@ for league, tiers in all_tiers.items():
             result += f'*{t.replace("_", " ").title()}:*\n'
             if len(tiers[t]):
                 for info in tiers[t]:
-                    result += f'{info["match"]} *{info["outcome"]}* / {info["marathon"]} *({info["coeff"]}%)* > € {info["stake"] or 1}\n'
+                    result += f'{info["match"]} *{info["outcome"]}* / {info["odds"]} *({info["coeff"]}%)* > € {info["stake"] or 1}\n'
             else:
                 result += f'_Nessun match nel {t.replace("_", " ").title()}_\n'
         result += '\n'

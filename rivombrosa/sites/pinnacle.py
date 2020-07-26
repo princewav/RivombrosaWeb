@@ -3,6 +3,7 @@ from pprint import pprint
 import requests
 
 from rivombrosa.config import headers, teams_mapping
+from rivombrosa.utilitites import utils
 from rivombrosa.utilitites.converter import from_american_to_decimal
 from rivombrosa.utilitites.utils import get_from_list_of_dicts, get_from_list_of_dicts_multiple
 
@@ -28,7 +29,7 @@ def get_prices(url):
     matchups = requests.get(matchups_url, headers=headers).json()
     straights = requests.get(straights_url, headers=headers).json()
     results = {}
-    teams_map = teams_mapping[book]
+    teams_map = utils.get_team_mapping()[book]
 
     for matchup_info in matchups:
         if 'participants' in matchup_info:

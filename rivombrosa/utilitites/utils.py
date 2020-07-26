@@ -1,7 +1,12 @@
+import json
+from pathlib import Path
+
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
-from rivombrosa.config import headers
+from rivombrosa.config import headers, user_agent
 
 
 def get_soup(url):
@@ -26,5 +31,25 @@ def subdivide(l, n):
     return total
 
 
-def lavagna(*odds):
-    return
+def selenium_driver(url):
+    options = Options()
+    options.add_argument(user_agent)
+    # options.add_argument("--headless")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    driver = webdriver.Chrome(options=options)
+
+    driver.set_window_position(0, 0)
+    driver.set_window_size(375, 812)
+    driver.get(url)
+    return driver
+
+def get_team_mapping():
+    p = Path(__file__).parent.parent / 'teams_map.json'
+    with p.open() as f:
+        return json.load(f)
+
+def save_team_mapping(mapping):
+    p = Path(__file__).parent.parent / 'teams_map.json'
+    with p.open('w') as f:
+        return json.dump(mapping, f)
