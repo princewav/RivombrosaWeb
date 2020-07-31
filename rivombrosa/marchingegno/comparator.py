@@ -1,18 +1,31 @@
-from pprint import pprint
+import time
+import pprint
 
-from rivombrosa.config import urls_per_league, leagues, BUDGET
+import clipboard
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
+from rivombrosa.config import BUDGET, URLS_PER_LEAGUE
 from rivombrosa.marchingegno.shin import get_real_odds, calcola_kelly, calcola_e
 from rivombrosa.sites.pinnacle import get_prices as get_pinnacle_prices
-from rivombrosa.sites.marathon import get_prices as get_marathon_prices
 from rivombrosa.sites.bet import get_prices as get_bet_prices
+from rivombrosa.utilitites.utils import selenium_driver
 
+leagues = list(URLS_PER_LEAGUE['bet'])
 
 def get_tiers(book, prices_to_play_method):
-    tiers = {x: {'tier_1': [], 'tier_2': [], 'tier_3': []} for x in leagues}
+    tiers = {x: {'tier_1': [], 'tier_2': [], 'tier_3': []} for x in URLS_PER_LEAGUE['pinnacle']}
 
-    for league, urls in urls_per_league.items():
-        pinnacle_data = get_pinnacle_prices(urls['pinnacle'])
-        to_play_data = prices_to_play_method(urls[book])
+    driver = selenium_driver()
+
+    for league in leagues:
+        print(league)
+        pinnacle_data = get_pinnacle_prices(URLS_PER_LEAGUE['pinnacle'][league], league)
+        driver.get(URLS_PER_LEAGUE['bet'][league])
+        time.sleep(0.2)
+        to_play_data = prices_to_play_method(driver, league)
+        # print(to_play_data)
 
         for match, pinnacle_odds in pinnacle_data.items():
             if pinnacle_odds:
@@ -35,13 +48,15 @@ def get_tiers(book, prices_to_play_method):
                     }
 
                     for k in data:
-                        for i, r in enumerate((0.5, 0, -10)):
+                        for i, r in enumerate((1, 0.5, 0)):
                             if data[k]['coeff'] > r:
                                 tiers[league][f'tier_{i+1}'].append(
-                                    {'tier': f'tier_{i}', **data[k]}
+                                    {'tier': f'tier_{i+1}', **data[k]}
                                 )
                                 break
 
+    # driver.quit()
+    clipboard.copy(pprint.pformat(tiers))
     return (tiers)
 
 
@@ -50,7 +65,7 @@ if __name__ == '__main__':
     book = 'bet'
     if book == 'bet':
         tiers = get_tiers(book, get_bet_prices)
-    if book == 'marathon':
-        tiers = get_tiers(book, get_marathon_prices)
+    # if book == 'marathon':
+    #     tiers = get_tiers(book, get_marathon_prices)
 
-    pprint(tiers)
+    pprint.pprint(tiers)

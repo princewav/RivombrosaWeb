@@ -31,17 +31,18 @@ def subdivide(l, n):
     return total
 
 
-def selenium_driver(url):
+def selenium_driver(url=''):
     options = Options()
     options.add_argument(user_agent)
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     driver = webdriver.Chrome(options=options)
 
     driver.set_window_position(0, 0)
     driver.set_window_size(375, 812)
-    driver.get(url)
+    if url:
+        driver.get(url)
     return driver
 
 def get_team_mapping():
@@ -52,4 +53,4 @@ def get_team_mapping():
 def save_team_mapping(mapping):
     p = Path(__file__).parent.parent / 'teams_map.json'
     with p.open('w') as f:
-        return json.dump(mapping, f)
+        return json.dump(mapping, f, ensure_ascii=False)

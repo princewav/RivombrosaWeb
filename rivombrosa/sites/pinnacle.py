@@ -2,7 +2,7 @@ from pprint import pprint
 
 import requests
 
-from rivombrosa.config import headers, teams_mapping
+from rivombrosa.config import headers
 from rivombrosa.utilitites import utils
 from rivombrosa.utilitites.converter import from_american_to_decimal
 from rivombrosa.utilitites.utils import get_from_list_of_dicts, get_from_list_of_dicts_multiple
@@ -23,13 +23,13 @@ def get_odds_by_id(straights, id):
             return odds
 
 
-def get_prices(url):
+def get_prices(url, league):
     matchups_url = url
     straights_url = f'{url.rsplit("/", 1)[0]}/markets/straight'
     matchups = requests.get(matchups_url, headers=headers).json()
     straights = requests.get(straights_url, headers=headers).json()
     results = {}
-    teams_map = utils.get_team_mapping()[book]
+    teams_map = utils.get_team_mapping()[book][league]
 
     for matchup_info in matchups:
         if 'participants' in matchup_info:
