@@ -2,10 +2,6 @@ import time
 import pprint
 
 import clipboard
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-
 from rivombrosa.config import BUDGET, URLS_PER_LEAGUE
 from rivombrosa.marchingegno.shin import get_real_odds, calcola_kelly, calcola_e
 from rivombrosa.sites.pinnacle import get_prices as get_pinnacle_prices
@@ -14,7 +10,8 @@ from rivombrosa.utilitites.utils import selenium_driver
 
 leagues = list(URLS_PER_LEAGUE['bet'])
 
-def get_tiers(book, prices_to_play_method):
+def get_tiers():
+
     tiers = {x: {'tier_1': [], 'tier_2': [], 'tier_3': []} for x in URLS_PER_LEAGUE['pinnacle']}
 
     driver = selenium_driver()
@@ -24,8 +21,7 @@ def get_tiers(book, prices_to_play_method):
         pinnacle_data = get_pinnacle_prices(URLS_PER_LEAGUE['pinnacle'][league], league)
         driver.get(URLS_PER_LEAGUE['bet'][league])
         time.sleep(0.2)
-        to_play_data = prices_to_play_method(driver, league)
-        # print(to_play_data)
+        to_play_data = get_bet_prices(driver, league)
 
         for match, pinnacle_odds in pinnacle_data.items():
             if pinnacle_odds:
@@ -55,8 +51,7 @@ def get_tiers(book, prices_to_play_method):
                                 )
                                 break
 
-    # driver.quit()
-    clipboard.copy(pprint.pformat(tiers))
+    driver.quit()
     return (tiers)
 
 
@@ -64,7 +59,7 @@ if __name__ == '__main__':
     tiers = {}
     book = 'bet'
     if book == 'bet':
-        tiers = get_tiers(book, get_bet_prices)
+        tiers = get_tiers()
     # if book == 'marathon':
     #     tiers = get_tiers(book, get_marathon_prices)
 

@@ -26,7 +26,7 @@ def metodo_ad_hoc_bet_date(dates):
 
 def get_source_html(driver, league):
     try:
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "cm-ParticipantWithBookCloses_Name")))
+        WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.CLASS_NAME, "cm-ParticipantWithBookCloses_Name")))
         page = driver.page_source
     except Exception as e:
         print(f'Fallito: {league}')

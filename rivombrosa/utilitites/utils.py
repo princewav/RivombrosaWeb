@@ -53,4 +53,4 @@ def get_team_mapping():
 def save_team_mapping(mapping):
     p = Path(__file__).parent.parent / 'teams_map.json'
     with p.open('w') as f:
-        return json.dump(mapping, f, ensure_ascii=False)
+        return json.dump(mapping, f)
