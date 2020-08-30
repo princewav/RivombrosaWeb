@@ -23,12 +23,26 @@ def metodo_ad_hoc_bet_date(dates):
         total.append(ref)
     return total
 
+def wait_element(driver, css_class):
+    WebDriverWait(driver, 150).until(EC.presence_of_element_located((By.CLASS_NAME, css_class)))
+    try:
+        return driver.find_elements_by_class_name(css_class)[0]
+    except Exception as e:
+        print(e)
+        return None
+
 
 def get_source_html(driver, league):
     try:
-        WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.CLASS_NAME, "cm-ParticipantWithBookCloses_Name")))
+        el = wait_element(driver, "gl-MarketGrid")
+        susp = el.find_elements_by_class_name('cl-BettingSuspendedScreen_Message')
+        if len(susp) > 0:
+            print(f'Fallito: {league}')
+            return
+
         page = driver.page_source
     except Exception as e:
+        print(e)
         print(f'Fallito: {league}')
         return
 
@@ -57,7 +71,7 @@ def get_prices(driver, league):
 
 if __name__ == '__main__':
     driver = selenium_driver('https://mobile.bet365.it/#/AC/B1/C1/D13/E49852029/F2/')
-    # driver = selenium_driver('https://mobile.bet365.it/#/AC/B1/C1/D13/E49487629/F2/')
 
     prices = get_prices(driver, 'serie a')
     print(prices)
+    driver.quit()

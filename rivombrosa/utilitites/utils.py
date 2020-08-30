@@ -34,7 +34,7 @@ def subdivide(l, n):
 def selenium_driver(url=''):
     options = Options()
     options.add_argument(user_agent)
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     driver = webdriver.Chrome(options=options)
