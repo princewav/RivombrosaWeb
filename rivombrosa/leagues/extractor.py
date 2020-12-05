@@ -18,7 +18,7 @@ def extract_bet_league_and_teams(driver, url):
         soup = BeautifulSoup(page, 'html.parser')
     else:
         return set()
-    teams = set([x.text for x in soup.select('.cm-ParticipantWithBookCloses_Name')])
+    teams = set([x.text for x in soup.select('.rcl-ParticipantFixtureDetails_Team')])
     return teams
 
 def extract_pinnacle_league_and_teams(url):

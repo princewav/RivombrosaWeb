@@ -44,7 +44,7 @@ def get_tiers():
                     }
 
                     for k in data:
-                        for i, r in enumerate((1, 0.5, 0)):
+                        for i, r in enumerate((1, 0.5, -10)):
                             if data[k]['coeff'] > r:
                                 tiers[league][f'tier_{i+1}'].append(
                                     {'tier': f'tier_{i+1}', **data[k]}

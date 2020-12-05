@@ -17,6 +17,7 @@ def get_soup(url):
 def get_from_list_of_dicts(list_of_dicts, key, value):
     return ([x for x in list_of_dicts if x.get(key) == value] or [{}])[0]
 
+
 def get_from_list_of_dicts_multiple(list_of_dicts, key, value):
     return ([x for x in list_of_dicts if x.get(key) == value] or [{}])
 
@@ -38,6 +39,9 @@ def selenium_driver(url=''):
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     driver = webdriver.Chrome(options=options)
+    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {"source":
+                                                                         """Object.defineProperty(navigator, 
+                                                                         'webdriver', {get: () => undefined})"""})
 
     driver.set_window_position(0, 0)
     driver.set_window_size(375, 812)
@@ -45,10 +49,12 @@ def selenium_driver(url=''):
         driver.get(url)
     return driver
 
+
 def get_team_mapping():
     p = Path(__file__).parent.parent / 'teams_map.json'
     with p.open() as f:
         return json.load(f)
+
 
 def save_team_mapping(mapping):
     p = Path(__file__).parent.parent / 'teams_map.json'
